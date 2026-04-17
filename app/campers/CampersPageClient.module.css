@@ -1,0 +1,55 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+/* layout */
+.layout {
+  display: flex;
+  flex-direction: column; /* мобілка */
+  gap: 24px;
+}
+
+/* sidebar */
+.sidebar {
+  display: none;
+}
+
+/* content */
+.content {
+  width: 100%;
+}
+
+/* 🔘 кнопка */
+.filtersBtn {
+  display: block;
+  margin-bottom: 16px;
+}
+
+/* 🖥 ДЕСКТОП */
+@media (min-width: 1440px) {
+  .wrapper {
+    margin: 0 64px;
+    gap: 65px;
+  }
+
+  .layout {
+    flex-direction: row; /* 🔥 ОСЬ ЦЕ ГОЛОВНЕ */
+    align-items: flex-start;
+    gap: 32px;
+  }
+
+  .sidebar {
+    display: block;
+    width: 360px;
+    flex-shrink: 0;
+  }
+
+  .content {
+    flex: 1;
+  }
+
+  .filtersBtn {
+    display: none;
+  }
+}
