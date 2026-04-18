@@ -2,18 +2,15 @@
 
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import {
-  FreeMode,
-  Navigation,
-  Thumbs,
-} from "swiper/modules";
-
+import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
 
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
+
+import css from "./CamperGallery.module.css";
 
 type Props = {
   gallery: {
@@ -24,12 +21,10 @@ type Props = {
 };
 
 export default function CamperGallery({ gallery }: Props) {
-  const [thumbsSwiper, setThumbsSwiper] =
-    useState<SwiperType | null>(null);
+  const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
 
   return (
-    <div className="w-[400px]">
-      {/* 🔥 MAIN */}
+    <div className={css.container}>
       <Swiper
         style={
           {
@@ -41,19 +36,15 @@ export default function CamperGallery({ gallery }: Props) {
         navigation
         thumbs={{ swiper: thumbsSwiper }}
         modules={[FreeMode, Navigation, Thumbs]}
-        className="h-[300px]"
+        className={css.mainSwiper}
       >
         {gallery.map((img) => (
           <SwiperSlide key={img.id}>
-            <img
-              src={img.original}
-              className="w-full h-full object-cover rounded"
-            />
+            <img src={img.original} className={css.mainImage} />
           </SwiperSlide>
         ))}
       </Swiper>
 
-      {/* 🔥 THUMBS */}
       <Swiper
         onSwiper={setThumbsSwiper}
         loop={gallery.length > 4}
@@ -62,14 +53,11 @@ export default function CamperGallery({ gallery }: Props) {
         freeMode
         watchSlidesProgress
         modules={[FreeMode, Navigation, Thumbs]}
-        className="h-[80px] mt-2"
+        className={css.thumbsSwiper}
       >
         {gallery.map((img) => (
           <SwiperSlide key={img.id}>
-            <img
-              src={img.thumb}
-              className="w-full h-full object-cover rounded cursor-pointer opacity-60 hover:opacity-100"
-            />
+            <img src={img.thumb} className={css.thumbImage} />
           </SwiperSlide>
         ))}
       </Swiper>

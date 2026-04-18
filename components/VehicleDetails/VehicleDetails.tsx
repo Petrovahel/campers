@@ -1,4 +1,5 @@
 import { CamperDetails } from "@/types/camper";
+import css from "./VehicleDetails.module.css";
 
 type Props = {
   camper: CamperDetails;
@@ -6,27 +7,55 @@ type Props = {
 
 export default function VehicleDetails({ camper }: Props) {
   return (
-    <div>
-      <h3>Vehicle details</h3>
+    <div className={css.vehicleContainer}>
+      <div className={css.vechicleHead}>
+        <h3 className={css.vihicleTitle}>Vehicle details</h3>
 
-      {/* badges */}
-      <div>
-        <span>{camper.transmission}</span>
-        <span>{camper.engine}</span>
-              <span>{camper.form}</span>
-              {camper.amenities.map((item) => (
-                  <span key={item}>{item}</span>
-              ))}
+        <div className={css.mainDetails}>
+          <span className={css.mainItem}>{camper.transmission}</span>
+          <span className={css.mainItem}>{camper.engine}</span>
+          <span className={css.mainItem}>{camper.form}</span>
+          {camper.amenities.map((item) => (
+            <span className={css.mainItem} key={item}>
+              {item}
+            </span>
+          ))}
+        </div>
       </div>
+      <ul className={css.detailsList}>
+        <li className={css.detailsItem}>
+          <span>Form</span>
+          <span className={css.value}>
+            {camper.form
+              .replace("_", " ")
+              .replace(/\b\w/g, (l) => l.toUpperCase())}
+          </span>
+        </li>
 
-      {/* specs */}
-          <ul>
-        <li>Form: {camper.form}</li>
-        <li>Length: {camper.length}</li>
-        <li>Width: {camper.width}</li>
-        <li>Height: {camper.height}</li>
-        <li>Tank: {camper.tank}</li>
-        <li>Consumption: {camper.consumption}</li>
+        <li className={css.detailsItem}>
+          <span>Length</span>
+          <span>{camper.length} </span>
+        </li>
+
+        <li className={css.detailsItem}>
+          <span>Width</span>
+          <span>{camper.width} </span>
+        </li>
+
+        <li className={css.detailsItem}>
+          <span>Height</span>
+          <span>{camper.height} </span>
+        </li>
+
+        <li className={css.detailsItem}>
+          <span>Tank</span>
+          <span>{camper.tank} </span>
+        </li>
+
+        <li className={css.detailsItem}>
+          <span>Consumption</span>
+          <span>{camper.consumption}</span>
+        </li>
       </ul>
     </div>
   );

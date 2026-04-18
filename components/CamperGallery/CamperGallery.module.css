@@ -1,0 +1,72 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  min-width: 0;
+}
+
+.mainSwiper {
+  width: 100%;
+  height: 260px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.mainSwiper :global(.swiper),
+.mainSwiper :global(.swiper-wrapper),
+.mainSwiper :global(.swiper-slide) {
+  height: 100%;
+}
+
+.mainImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.thumbsSwiper {
+  width: 100%;
+  height: 70px;
+}
+
+.thumbsSwiper :global(.swiper-slide) {
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+  cursor: pointer;
+}
+
+.thumbsSwiper :global(.swiper-slide-thumb-active) {
+  opacity: 1;
+}
+
+.thumbImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.thumbsSwiper :global(.swiper-slide:hover) {
+  opacity: 0.8;
+}
+
+@media (min-width: 768px) {
+  .mainSwiper {
+    height: 360px;
+  }
+
+  .thumbsSwiper {
+    height: 90px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .mainSwiper {
+    height: 480px;
+  }
+
+  .thumbsSwiper {
+    height: 100px;
+  }
+}

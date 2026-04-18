@@ -1,23 +1,23 @@
 import { Review } from "@/types/review";
+import css from "./ReviewsCard.module.css";
 
 type Props = {
   reviews?: Review[];
 };
 
 export default function CamperReviews({ reviews = [] }: Props) {
-
   return (
-    <div>
-      <h3>Reviews</h3>
+    <div className={css.reviewsBlock}>
+      <h3 className={css.reviewsTitle}>Reviews</h3>
 
       {reviews.length === 0 && <p>No reviews yet</p>}
 
-      <ul>
+      <ul className={css.reviewsList}>
         {reviews.map((review) => (
-          <li key={review.id}>
-            <strong>{review.reviewer_name}</strong>
-            <p>⭐ {review.reviewer_rating}</p>
-            <p>{review.comment}</p>
+          <li className={css.reviewsItem} key={review.id}>
+            <p className={css.reviewerName}>{review.reviewer_name}</p>
+            <p> {review.reviewer_rating}</p>
+            <p className={css.reviewComment}>{review.comment}</p>
           </li>
         ))}
       </ul>

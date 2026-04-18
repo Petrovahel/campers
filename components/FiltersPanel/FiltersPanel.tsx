@@ -1,22 +1,28 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Filters } from "@/types/filters";
 import css from "./FiltersPanel.module.css";
 import { FiX } from "react-icons/fi";
 import { FiMapPin } from "react-icons/fi";
 
 type Props = {
+  filters: Filters;
   onSearch: (filters: Filters) => void;
+  onClear: () => void;
 };
 
-export default function FiltersPanel({ onSearch }: Props) {
-  const [filters, setFilters] = useState<Filters>({
+export default function FiltersPanel({ filters, onSearch, onClear }: Props) {
+  const [localFilters, setLocalFilters] = useState<Filters>({
     location: "",
     form: "",
     engine: "",
     transmission: "",
   });
+
+  useEffect(() => {
+    setLocalFilters(filters);
+  }, [filters]);
 
   return (
     <div className={css.filtersContainer}>
@@ -27,9 +33,9 @@ export default function FiltersPanel({ onSearch }: Props) {
           <input
             className={css.location}
             placeholder="type your city..."
-            value={filters.location}
+            value={localFilters.location || ""}
             onChange={(e) =>
-              setFilters({ ...filters, location: e.target.value })
+              setLocalFilters({ ...localFilters, location: e.target.value })
             }
           />
         </div>
@@ -46,8 +52,10 @@ export default function FiltersPanel({ onSearch }: Props) {
                   type="radio"
                   name="form"
                   value={item}
-                  checked={filters.form === item}
-                  onChange={() => setFilters({ ...filters, form: item })}
+                  checked={localFilters.form === item}
+                  onChange={() =>
+                    setLocalFilters({ ...localFilters, form: item })
+                  }
                 />
                 {item}
               </label>
@@ -63,8 +71,10 @@ export default function FiltersPanel({ onSearch }: Props) {
                 type="radio"
                 name="engine"
                 value={item}
-                checked={filters.engine === item}
-                onChange={() => setFilters({ ...filters, engine: item })}
+                checked={localFilters.engine === item}
+                onChange={() =>
+                  setLocalFilters({ ...localFilters, engine: item })
+                }
               />
               {item}
             </label>
@@ -79,8 +89,10 @@ export default function FiltersPanel({ onSearch }: Props) {
                 type="radio"
                 name="transmission"
                 value={item}
-                checked={filters.transmission === item}
-                onChange={() => setFilters({ ...filters, transmission: item })}
+                checked={localFilters.transmission === item}
+                onChange={() =>
+                  setLocalFilters({ ...localFilters, transmission: item })
+                }
               />
               {item}
             </label>
@@ -92,7 +104,7 @@ export default function FiltersPanel({ onSearch }: Props) {
           className={css.searchBtn}
           onClick={() => {
             console.log("filters:", filters);
-            onSearch(filters);
+            onSearch(localFilters);
           }}
         >
           Search
@@ -100,14 +112,16 @@ export default function FiltersPanel({ onSearch }: Props) {
 
         <button
           className={css.clearBtn}
-          onClick={() =>
-            setFilters({
+          onClick={() => {
+            const empty = {
               location: "",
               form: "",
               engine: "",
               transmission: "",
-            })
-          }
+            };
+            setLocalFilters(empty);
+            onClear();
+          }}
         >
           <FiX size={24} />
           Clear filters

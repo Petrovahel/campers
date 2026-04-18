@@ -1,6 +1,7 @@
 import CamperGallery from "../CamperGallery/CamperGallery";
 import CamperInfo from "../CamperInfo/CamperInfo";
 import VehicleDetails from "../VehicleDetails/VehicleDetails";
+import css from "./CamperDetails.module.css";
 
 import { CamperDetails as CamperType } from "@/types/camper";
 
@@ -10,12 +11,15 @@ type Props = {
 
 export default function CamperDetails({ camper }: Props) {
   return (
-    <div className="flex flex-col gap-6">
-      <div className="flex gap-6">
+    <div className={css.detailsContainer}>
+      <div className={css.gallery}>
         <CamperGallery gallery={camper.gallery} />
-        <CamperInfo camper={camper} />
       </div>
-      <VehicleDetails camper={camper} />
+      <div className={css.infoContainer}>
+        <CamperInfo camper={camper} />
+
+        <VehicleDetails camper={camper} />
+      </div>
     </div>
   );
 }

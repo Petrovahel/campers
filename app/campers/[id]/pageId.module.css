@@ -1,0 +1,45 @@
+.page {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  max-width: 100%;
+}
+
+.bottomSection {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 100%;
+}
+
+@media (min-width: 375px) {
+  .page {
+    gap: 30px;
+    padding: 16px;
+  }
+}
+
+@media (min-width: 768px) {
+  .page {
+    gap: 45px;
+    padding: 32px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .page {
+    gap: 88px;
+    padding: 64px;
+  }
+
+  .bottomSection {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .bottomSection > *:last-child {
+    margin-top: 60px;
+  }
+}

@@ -1,0 +1,101 @@
+.bookForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border: 1px solid var(--gray-light);
+  border-radius: 12px;
+  padding: 20px;
+  max-width: 100%;
+}
+
+.formTitle {
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--main);
+}
+
+.formText {
+  font-size: 14px;
+  color: var(--gray);
+}
+
+.formInput {
+  width: 100%;
+  padding: 14px 16px;
+
+  border-radius: 10px;
+  border: none;
+
+  background: var(--inputs);
+
+  font-size: 14px;
+  color: var(--main);
+}
+
+.bookBtn {
+  width: 100%;
+  padding: 14px;
+
+  border-radius: 100px;
+  border: none;
+
+  background: var(--grey-green);
+  color: var(--white);
+
+  font-size: 14px;
+  font-weight: 500;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .bookForm {
+    padding: 32px;
+    gap: 20px;
+  }
+
+  .formTitle {
+    font-size: 20px;
+  }
+
+  .formText {
+    font-size: 15px;
+  }
+
+  .formInput {
+    padding: 16px;
+    font-size: 15px;
+  }
+
+  .bookBtn {
+    padding: 16px;
+    font-size: 15px;
+  }
+}
+@media (min-width: 1440px) {
+  .bookForm {
+    padding: 44px;
+    border-radius: 16px;
+    gap: 24px;
+  }
+
+  .formTitle {
+    font-size: 20px;
+  }
+
+  .formText {
+    font-size: 16px;
+  }
+
+  .formInput {
+    padding: 18px;
+    font-size: 16px;
+  }
+
+  .bookBtn {
+    height: 56px;
+    font-size: 16px;
+  }
+}
