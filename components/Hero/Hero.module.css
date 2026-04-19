@@ -65,14 +65,14 @@
   }
 
   .container {
-    align-items: flex-start; /* 👈 ВАЖЛИВО */
+    align-items: flex-start;
     max-width: 768px;
     padding: 0 64px;
   }
 
   .content {
-    align-items: flex-start; /* 👈 ВАЖЛИВО */
-    text-align: left; /* 👈 */
+    align-items: flex-start;
+    text-align: left;
   }
 }
 

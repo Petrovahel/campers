@@ -10,17 +10,17 @@
   .detailsContainer {
     flex-direction: column;
   }
+
+  .infoContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
 }
 
 @media (min-width: 768px) {
   .detailsContainer {
     gap: 32px;
-  }
-
-  .infoContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
   }
 }
 

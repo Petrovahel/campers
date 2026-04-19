@@ -6,7 +6,7 @@
   gap: 48px;
   border-radius: 20px;
   padding: 24px;
-  width: 360px;
+  max-width: 100%;
   height: 840px;
   background: var(--inputs);
   margin: 48px 0;
@@ -135,4 +135,19 @@
 
 .clearBtn:hover {
   border: 1px solid var(--green-hover);
+}
+
+@media (min-width: 768px) {
+  .filtersContainer {
+    align-items: center;
+  }
+}
+
+@media (min-width: 1440px) {
+  .filtersContainer {
+    align-items: flex-start;
+  }
+  .filtersContainer {
+    width: 360px;
+  }
 }
