@@ -33,3 +33,27 @@
 .paginationBtn:hover {
   border: 1px solid var(--green-hover);
 }
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 0;
+  font-size: 16px;
+  color: var(--gray);
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #eee;
+  border-top: 4px solid var(--grey-green);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

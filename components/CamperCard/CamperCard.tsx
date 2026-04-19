@@ -6,6 +6,7 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 import { GiGasPump } from "react-icons/gi";
 import { MdOutlineSettings } from "react-icons/md";
 import { TbCamper } from "react-icons/tb";
+import Image from "next/image";
 
 type Props = {
   camper: Camper;
@@ -14,9 +15,11 @@ type Props = {
 export default function CamperCard({ camper }: Props) {
   return (
     <li className={css.camperInList}>
-      <img
+      <Image
         src={camper.coverImage}
         alt={camper.name}
+        width={300}
+        height={200}
         className={css.camperImg}
       />
       <div className={css.camperInfo}>
@@ -28,7 +31,7 @@ export default function CamperCard({ camper }: Props) {
           <span className={css.rating}>
             <FaStar className={css.iconStar} size={16} />
             {camper.rating}
-            <span className={css.reviews}>(2 Reviews)</span>
+            <span className={css.reviews}>({camper.totalReviews} Reviews)</span>
           </span>
 
           <span className={css.location}>

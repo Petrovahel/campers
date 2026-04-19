@@ -27,8 +27,12 @@ export default function BookForm({ camperId }: Props) {
   const [status, setStatus] = useState<"success" | "error" | null>(null);
   const [message, setMessage] = useState("");
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const onSubmit = async (data: FormValues) => {
     try {
+      setIsLoading(true);
+
       const result = await createBooking(camperId, data);
 
       setStatus("success");
@@ -38,6 +42,8 @@ export default function BookForm({ camperId }: Props) {
       console.error(error);
       setStatus("error");
       setMessage("Something went wrong");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -82,8 +88,8 @@ export default function BookForm({ camperId }: Props) {
       />
       {errors.email && <p className={css.error}>{errors.email.message}</p>}
 
-      <button className={css.bookBtn} type="submit">
-        Send
+      <button className={css.bookBtn} type="submit" disabled={isLoading}>
+        {isLoading ? "Sending..." : "Send"}
       </button>
     </form>
   );

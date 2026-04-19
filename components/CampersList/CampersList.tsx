@@ -23,7 +23,13 @@ export default function CampersList({ filters }: Props) {
       },
     });
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) {
+    return (
+      <div className={css.loader}>
+        <div className={css.spinner}></div>
+      </div>
+    );
+  }
 
   return (
     <section className={css.container}>
