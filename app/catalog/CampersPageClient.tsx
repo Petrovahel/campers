@@ -10,6 +10,9 @@ import { FiSliders } from "react-icons/fi";
 export default function CampersPageClient() {
   const [filters, setFilters] = useState<Filters>({});
   const [isOpen, setIsOpen] = useState(false);
+
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleClearFilters = () => {
     setFilters({});
     setIsOpen(false);
@@ -44,13 +47,17 @@ export default function CampersPageClient() {
         <aside className={css.sidebar}>
           <FiltersPanel
             filters={filters}
-            onSearch={setFilters}
+            onSearch={(data) => {
+              setIsLoading(true);
+              setFilters(data);
+              setIsOpen(false);
+            }}
             onClear={handleClearFilters}
           />
         </aside>
 
         <main className={css.content}>
-          <CampersList filters={filters} />
+          <CampersList filters={filters} setIsLoading={setIsLoading} />{" "}
         </main>
       </div>
     </div>

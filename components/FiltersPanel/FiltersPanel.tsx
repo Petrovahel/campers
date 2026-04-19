@@ -5,6 +5,18 @@ import { Filters } from "@/types/filters";
 import css from "./FiltersPanel.module.css";
 import { FiX } from "react-icons/fi";
 import { FiMapPin } from "react-icons/fi";
+import type { CamperForm, Engine, Transmission } from "@/types/camper";
+
+const forms: CamperForm[] = [
+  "alcove",
+  "panel_van",
+  "integrated",
+  "semi_integrated",
+];
+
+const engines: Engine[] = ["diesel", "petrol", "hybrid", "electric"];
+
+const transmissions: Transmission[] = ["automatic", "manual"];
 
 type Props = {
   filters: Filters;
@@ -15,9 +27,9 @@ type Props = {
 export default function FiltersPanel({ filters, onSearch, onClear }: Props) {
   const [localFilters, setLocalFilters] = useState<Filters>({
     location: "",
-    form: "",
-    engine: "",
-    transmission: "",
+    form: undefined,
+    engine: undefined,
+    transmission: undefined,
   });
 
   useEffect(() => {
@@ -45,27 +57,25 @@ export default function FiltersPanel({ filters, onSearch, onClear }: Props) {
 
         <div className={css.filterGroup}>
           <h3 className={css.itemTitle}>Camper form</h3>
-          {["alcove", "panel_van", "integrated", "semi_integrated"].map(
-            (item) => (
-              <label key={item} className={css.radio}>
-                <input
-                  type="radio"
-                  name="form"
-                  value={item}
-                  checked={localFilters.form === item}
-                  onChange={() =>
-                    setLocalFilters({ ...localFilters, form: item })
-                  }
-                />
-                {item}
-              </label>
-            )
-          )}
+          {forms.map((item) => (
+            <label key={item} className={css.radio}>
+              <input
+                type="radio"
+                name="form"
+                value={item}
+                checked={localFilters.form === item}
+                onChange={() =>
+                  setLocalFilters({ ...localFilters, form: item })
+                }
+              />
+              {item}
+            </label>
+          ))}
         </div>
 
         <div className={css.filterGroup}>
           <h3 className={css.itemTitle}>Engine</h3>
-          {["diesel", "petrol", "hybrid", "electric"].map((item) => (
+          {engines.map((item) => (
             <label key={item} className={css.radio}>
               <input
                 type="radio"
@@ -83,7 +93,7 @@ export default function FiltersPanel({ filters, onSearch, onClear }: Props) {
 
         <div className={css.filterGroup}>
           <h3 className={css.itemTitle}>Transmission</h3>
-          {["automatic", "manual"].map((item) => (
+          {transmissions.map((item) => (
             <label key={item} className={css.radio}>
               <input
                 type="radio"
@@ -103,7 +113,6 @@ export default function FiltersPanel({ filters, onSearch, onClear }: Props) {
         <button
           className={css.searchBtn}
           onClick={() => {
-            console.log("filters:", filters);
             onSearch(localFilters);
           }}
         >
@@ -115,9 +124,9 @@ export default function FiltersPanel({ filters, onSearch, onClear }: Props) {
           onClick={() => {
             const empty = {
               location: "",
-              form: "",
-              engine: "",
-              transmission: "",
+              form: undefined,
+              engine: undefined,
+              transmission: undefined,
             };
             setLocalFilters(empty);
             onClear();

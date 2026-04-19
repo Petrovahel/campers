@@ -5,22 +5,30 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import CamperCard from "@/components/CamperCard/CamperCard";
 import { Filters } from "@/types/filters";
 import css from "./CampersList.module.css";
+import type { CampersResponse } from "@/types/camper";
 
 type Props = {
   filters: Filters;
+  setIsLoading?: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export default function CampersList({ filters }: Props) {
   const { data, fetchNextPage, hasNextPage, isLoading, isFetchingNextPage } =
-    useInfiniteQuery({
-      queryKey: ["campers", JSON.stringify(filters)],
+    useInfiniteQuery<
+      CampersResponse,
+      Error,
+      CampersResponse,
+      [_: string, Filters],
+      number
+    >({
+      queryKey: ["campers", filters],
+
       queryFn: ({ pageParam = 1 }) => fetchCampers(pageParam, filters),
+
       initialPageParam: 1,
-      getNextPageParam: (lastPage) => {
-        return lastPage.page < lastPage.totalPages
-          ? lastPage.page + 1
-          : undefined;
-      },
+
+      getNextPageParam: (lastPage) =>
+        lastPage.page < lastPage.totalPages ? lastPage.page + 1 : undefined,
     });
 
   if (isLoading) {

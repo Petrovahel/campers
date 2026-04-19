@@ -53,11 +53,12 @@ export default function CamperCard({ camper }: Props) {
           </span>
         </div>
         <Link
-          href={`/campers/${camper.id}`}
+          href={`/catalog/${camper.id}`}
           target="_blank"
+          rel="noopener noreferrer"
           className={css.moreBtn}
         >
-          Load more
+          Show more
         </Link>
       </div>
     </li>

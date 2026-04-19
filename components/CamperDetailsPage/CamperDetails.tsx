@@ -2,14 +2,13 @@ import CamperGallery from "../CamperGallery/CamperGallery";
 import CamperInfo from "../CamperInfo/CamperInfo";
 import VehicleDetails from "../VehicleDetails/VehicleDetails";
 import css from "./CamperDetails.module.css";
-
-import { CamperDetails as CamperType } from "@/types/camper";
+import { CamperDetails } from "@/types/camper";
 
 type Props = {
-  camper: CamperType;
+  camper: CamperDetails;
 };
 
-export default function CamperDetails({ camper }: Props) {
+export default function CamperDetailsPage({ camper }: Props) {
   return (
     <div className={css.detailsContainer}>
       <div className={css.gallery}>

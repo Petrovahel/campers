@@ -1,12 +1,14 @@
-export type Filters = {
-  location?: string;
-  form?: string;
-  transmission?: string;
-  engine?: string;
-};
+import { CamperForm, Engine, Transmission } from "./camper";
 
-export type FiltersResponse = {
-  forms: string[];
-  transmissions: string[];
-  engines: string[];
-};
+export interface Filters {
+  location?: string;
+  form?: CamperForm;
+  engine?: Engine;
+  transmission?: Transmission;
+}
+
+export interface FiltersResponse {
+  forms: CamperForm[];
+  transmissions: Transmission[];
+  engines: Engine[];
+}

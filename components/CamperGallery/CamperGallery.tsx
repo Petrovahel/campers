@@ -4,24 +4,24 @@ import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
-
+import Image from "next/image";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 
 import css from "./CamperGallery.module.css";
+import type { GalleryItem } from "@/types/camper";
 
 type Props = {
-  gallery: {
-    id: string;
-    thumb: string;
-    original: string;
-  }[];
+  gallery: GalleryItem[];
 };
 
 export default function CamperGallery({ gallery }: Props) {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
+  if (!gallery.length) {
+    return <p>No images available</p>;
+  }
 
   return (
     <div className={css.container}>
@@ -40,7 +40,13 @@ export default function CamperGallery({ gallery }: Props) {
       >
         {gallery.map((img) => (
           <SwiperSlide key={img.id}>
-            <img src={img.original} className={css.mainImage} />
+            <Image
+              src={img.original}
+              alt="Camper image"
+              width={800}
+              height={500}
+              className={css.mainImage}
+            />{" "}
           </SwiperSlide>
         ))}
       </Swiper>
@@ -57,7 +63,13 @@ export default function CamperGallery({ gallery }: Props) {
       >
         {gallery.map((img) => (
           <SwiperSlide key={img.id}>
-            <img src={img.thumb} className={css.thumbImage} />
+            <Image
+              src={img.thumb}
+              alt="Camper thumbnail"
+              width={150}
+              height={100}
+              className={css.thumbImage}
+            />
           </SwiperSlide>
         ))}
       </Swiper>

@@ -29,12 +29,12 @@ export default function Header() {
         </Link>
 
         <Link
-          href="/campers"
+          href="/catalog"
           className={`${css.navItem} ${
-            pathname === "/campers" ? css.active : ""
+            pathname === "/catalog" ? css.active : ""
           }`}
           onClick={(e) => {
-            if (pathname === "/campers") e.preventDefault();
+            if (pathname === "/catalog") e.preventDefault();
           }}
         >
           Catalog

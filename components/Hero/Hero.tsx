@@ -9,7 +9,7 @@ export default function Hero() {
           <h1>Campers of your dreams</h1>
           <p>You can find everything you want in our catalog</p>
         </div>
-        <Link className={css.mainBut} href="/campers">
+        <Link className={css.mainBut} href="/catalog">
           View Now
         </Link>
       </div>

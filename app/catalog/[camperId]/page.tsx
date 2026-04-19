@@ -4,13 +4,15 @@ import ReviewsCars from "@/components/ReviewsCard/ReviewsCard";
 import BookForm from "@/components/BookForm/BookForm";
 import css from "./pageId.module.css";
 
-type Params = Promise<{ id: string }>;
+export default async function CamperPage({
+  params,
+}: {
+  params: Promise<{ camperId: string }>;
+}) {
+  const { camperId } = await params;
 
-export default async function CamperPage({ params }: { params: Params }) {
-  const { id } = await params;
-
-  const camper = await getCamperById(id);
-  const reviews = await getReviewsByCamperId(id);
+  const camper = await getCamperById(camperId);
+  const reviews = await getReviewsByCamperId(camperId);
 
   return (
     <div className={css.page}>
