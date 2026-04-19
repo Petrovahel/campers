@@ -4,6 +4,21 @@ import ReviewsCars from "@/components/ReviewsCard/ReviewsCard";
 import BookForm from "@/components/BookForm/BookForm";
 import css from "./pageId.module.css";
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ camperId: string }>;
+}) {
+  const { camperId } = await params;
+
+  const camper = await getCamperById(camperId);
+
+  return {
+    title: `${camper.name} | TravelTrucks`,
+    description: camper.description,
+  };
+}
+
 export default async function CamperPage({
   params,
 }: {

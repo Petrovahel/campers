@@ -2,7 +2,10 @@
   position: relative;
   min-height: calc(100vh - 72px);
   width: 100%;
-  background-image: url("/images/hero-bg.jpg");
+  background-image: image-set(
+    url("/images/hero.jpg") 1x,
+    url("/images/hero@2x.jpg") 2x
+  );
   background-size: cover;
   background-position: center;
   display: flex;
